@@ -5,44 +5,53 @@
 
 namespace View\Template;
 
-abstract class Template extends TemplateGenerator implements TemplateBase
+abstract class Template extends Generator implements Base
 {
-	const DEFAULT_ASSETS = true;
 	private $forceAll = false;
-	private $dependencies = [];
+	private $assets = [];
+	private $assetDir = __DIR__;
 
 	public function load() {
-		$args = func_get_args();
+		$vars   = func_get_args();
+		$assets = $this->getAssets();
+
+		$this->render($assets, $vars);
 	}
 
-	public function setDependencies() {
+	public function setAssets() {
 		$args = func_get_args();
 
 		if (is_array($args)) {
 			foreach ($args as $arg) {
-				$this->setDependency($arg);
+				$this->setAsset($arg);
 			}
 		}
 		else {
-			$this->setDependency($args);
+			$this->setAsset($args);
 		}
 	}
 
-	public function setDependency($arg) {
+	public function setAsset($arg) {
 		if (is_array($arg)) {
-			$this->setDependencies($arg);
+			$this->setAssets($arg);
 		}
 		else {
-			$this->dependencies[] = $arg;
+			$this->assets[] = $arg;
 		}
 	}
 
-	public function clearDependencies() {
-		$this->dependencies = [];
+	public function clearAssets() {
+		$this->assets = [];
 	}
 
-	public function getDependencies() {
-		return $this->dependencies;
+	public function getAssets() {
+		if (self::DEFAULT_ASSETS) {
+			$defaultAssets = \Config\Config::loadDefaultAssets();
+
+			return array_merge($this->assets, $defaultAssets);
+		}
+
+		return $this->assets;
 	}
 
 	public function validate() {
@@ -58,14 +67,12 @@ abstract class Template extends TemplateGenerator implements TemplateBase
 
 		return true;
 	}
-	/*
-		public function setDependencyDir($dir) {
-			if(empty($dir)) {
-				$dir = $this->config->
-			}
-			else {
-				$this->dependancy
-			}
-		}
-	*/
+
+	public function setAssetDir($dir) {
+		$this->assetDir = $dir;
+	}
+
+	public function getAssetDir() {
+		return $this->assetDir;
+	}
 }

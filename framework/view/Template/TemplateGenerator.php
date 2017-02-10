@@ -6,7 +6,7 @@
 namespace View\Template;
 
 
-abstract class TemplateGenerator
+abstract class Generator implements Base
 {
 	protected $template = false;
 
@@ -29,13 +29,13 @@ abstract class TemplateGenerator
 		}
 	}
 
-	public function render($includes = array(), $variables = array()) {
-		if (!is_array($includes) || !is_array($variables)) {
+	public function render($assets = array(), $variables = array()) {
+		if (!is_array($assets) || !is_array($variables)) {
 			throw new \BadMethodCallException('All parameters to render must be arrays');
 		}
 
-		foreach ($includes as $include) {
-			require_once($include);
+		foreach ($assets as $asset) {
+			require_once($asset);
 		}
 
 		extract($variables);

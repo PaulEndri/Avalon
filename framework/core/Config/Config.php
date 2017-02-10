@@ -8,10 +8,9 @@ namespace Config;
 class Config
 {
 
-	const     TEMPLATE_DEPENDENCIES = false;
-	const  ASSET_DIR = false;
 	protected $fileName = false;
 	private $defaultFileName = 'config.inc.php';
+	private $loaded = [];
 
 	public function __construct($fileName) {
 		if (empty($fileName)) {
@@ -28,7 +27,7 @@ class Config
 			$this->create();
 		}
 		else {
-			require_once($this->fileName);
+			$this->loaded = parse_ini_file($this->fileName);
 		}
 	}
 
@@ -36,5 +35,9 @@ class Config
 		//	$generator = new \Config\Generator($this->fileName);
 
 		//	$generator->launch();
+	}
+
+	public static function loadDefaultAssets() {
+
 	}
 }

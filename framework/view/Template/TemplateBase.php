@@ -6,21 +6,21 @@
 namespace View\Template;
 
 
-interface TemplateBase
+interface Base
 {
+	const DEFAULT_ASSETS = true;
+
 	public function render($includes, $variables);
 
 	public function load();
 
-	public function setDependencies();
+	public function setAssets();
 
-	public function setDependency($arg);
+	public function setAsset($arg);
 
-	public function setDependencyDir($dir);
+	public function setAssetDir($dir);
 
 	public function validate();
 
-	public function generate($templateName);
-
-	public function getDepencies();
+	public function getAssets();
 }
