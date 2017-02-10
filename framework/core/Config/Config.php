@@ -10,7 +10,7 @@ class Config
 
 	protected $fileName = false;
 	private $defaultFileName = 'config.inc.php';
-	private $loaded = [];
+	protected $loaded = [];
 
 	public function __construct($fileName) {
 		if (empty($fileName)) {
@@ -29,15 +29,31 @@ class Config
 		else {
 			$this->loaded = parse_ini_file($this->fileName);
 		}
+
+		$GLOBALS['config'] = $this;
 	}
 
 	private function create() {
-		//	$generator = new \Config\Generator($this->fileName);
+		$generator = new \Config\Generator($this->fileName);
 
-		//	$generator->launch();
+		$generator->launch();
 	}
 
-	public static function loadDefaultAssets() {
+	public function loadDefaultAssets() {
+		$asset_dir = $this->loaded['asset_dir'];
+		$assets    = [];
 
+		if (empty($asset_dir)) {
+			return [];
+		}
+
+		$path  = realpath($asset_dir);
+		$files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
+
+		foreach ($files as $name => $object) {
+			$assets[] = $name;
+		}
+
+		return $assets;
 	}
 }

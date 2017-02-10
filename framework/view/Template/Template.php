@@ -9,7 +9,6 @@ abstract class Template extends Generator implements Base
 {
 	private $forceAll = false;
 	private $assets = [];
-	private $assetDir = __DIR__;
 
 	public function load() {
 		$vars   = func_get_args();
@@ -46,7 +45,7 @@ abstract class Template extends Generator implements Base
 
 	public function getAssets() {
 		if (self::DEFAULT_ASSETS) {
-			$defaultAssets = \Config\Config::loadDefaultAssets();
+			$defaultAssets = $GLOBALS['config']->loadDefaultAssets();
 
 			return array_merge($this->assets, $defaultAssets);
 		}

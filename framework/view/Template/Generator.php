@@ -6,9 +6,10 @@
 namespace View\Template;
 
 
-abstract class Generator implements Base
+abstract class Generator
 {
 	protected $template = false;
+	protected $assetDir = __DIR__;
 
 	public function __construct($template, $dir = false) {
 		if (empty($template)) {
@@ -16,10 +17,12 @@ abstract class Generator implements Base
 		}
 
 		if ($dir === false) {
-			$dir = \Config\Config::ASSET_DIR;
+			$config = $GLOBALS['config'];
+			$dir    = $config->loaded['DIR'];
 		}
 
-		$fileName = $dir . '/' . $template . '.php';
+		$this->assetDir = $dir;
+		$fileName       = $dir . '/' . $template . '.php';
 
 		if (file_exists($fileName)) {
 			$this->template = $fileName;
