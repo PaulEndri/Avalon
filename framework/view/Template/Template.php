@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Paul
- * Date: 2/9/2017
- * Time: 7:34 PM
+ * Created by Juan S (aka Paul Endri)
  */
 
 namespace View\Template;
@@ -15,7 +12,7 @@ abstract class Template extends TemplateGenerator implements TemplateBase
 	private $dependencies = [];
 
 	public function load() {
-		//	$args = func_get_args();
+		$args = func_get_args();
 	}
 
 	public function setDependencies() {
@@ -42,6 +39,10 @@ abstract class Template extends TemplateGenerator implements TemplateBase
 
 	public function clearDependencies() {
 		$this->dependencies = [];
+	}
+
+	public function getDependencies() {
+		return $this->dependencies;
 	}
 
 	public function validate() {

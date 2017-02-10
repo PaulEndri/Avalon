@@ -1,11 +1,9 @@
 <?php
-namespace Config;
 /**
- * Created by PhpStorm.
- * User: Paul
- * Date: 2/9/2017
- * Time: 7:00 PM
+ * Created by Juan S (aka Paul Endri)
  */
+
+namespace Config;
 
 class Config
 {

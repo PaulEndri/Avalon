@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Paul
- * Date: 2/9/2017
- * Time: 8:20 PM
+ * Created by Juan S (aka Paul Endri)
  */
 
 namespace View\Template;
@@ -24,4 +21,6 @@ interface TemplateBase
 	public function validate();
 
 	public function generate($templateName);
+
+	public function getDepencies();
 }
