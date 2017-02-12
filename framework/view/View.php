@@ -7,9 +7,9 @@ namespace View;
 
 abstract class View
 {
-	private $template = '';
-	private $controller = '';
-	private $file = '';
+	protected $template = '';
+	protected $controller = '';
+	protected $file = '';
 	private $loadedTemplate = false;
 
 	public function __construct() {
@@ -41,6 +41,14 @@ abstract class View
 			throw new \Exception('WE NEED PICTURES OF THAT NO-GOOD SPIDERMAN!');
 		}
 
-		(new \Controller\Controller($controller))->allow();
+		// (new \Controller\Controller($controller))->allow();
+	}
+
+	public function render() {
+		if ($this->loadedTemplate === false) {
+			throw new \Exception('Woah there Cowboy');
+		}
+
+		$this->loadedTemplate->load();
 	}
 }
