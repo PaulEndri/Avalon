@@ -3,7 +3,7 @@
  * Created by Juan S (aka Paul Endri)
  */
 
-namespace Config;
+namespace Core\Config;
 
 
 class Generator

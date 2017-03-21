@@ -3,7 +3,7 @@
  * Created by Juan S (aka Paul Endri)
  */
 
-namespace Config;
+namespace Core\Config;
 
 class Config
 {
@@ -18,6 +18,8 @@ class Config
 		}
 
 		$this->fileName = $fileName;
+
+		return $this;
 	}
 
 	public function load($forceWrite = false) {
@@ -31,6 +33,8 @@ class Config
 		}
 
 		$GLOBALS['config'] = $this;
+
+		return $this;
 	}
 
 	private function create() {
