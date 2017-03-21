@@ -6,6 +6,6 @@
 namespace Avalon\Core\Route;
 
 
-class RouteService {
+class RouteController {
 
 }

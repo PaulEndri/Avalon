@@ -19,10 +19,14 @@ class BootService {
 		return $this;
 	}
 
-	public function registerRoutes() {
-		$routeService = new RouteService();
-		self::$routes = $routeService::loadRoutes();
+	public function registerRoutes($routes = array()) {
+		$routeController = new \Avalon\Core\Route\RouteController();
+		self::$routes    = $routeController::loadRoutes($routeController);
 
 		return $this;
+	}
+
+	public function launchApp() {
+
 	}
 }

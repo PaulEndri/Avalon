@@ -1,0 +1,6 @@
+{
+  "/" : {
+    "GET"     : "GenericView::render",
+    "DEFAULT" : "ErrorView::render"
+  }
+}
