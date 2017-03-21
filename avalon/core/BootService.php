@@ -3,14 +3,14 @@
  * Created by Juan S (aka Paul Endri)
  */
 
-namespace Core\BootService;
+namespace Avalon\Core\BootService;
 
 class BootService {
 	public static $config = null;
 	public static $routes = [];
 
 	public function __construct($configFileName) {
-		$config = new \Core\Config\Config($configFileName);
+		$config = new \Avalon\Core\Config\Config($configFileName);
 
 		$config->load();
 

@@ -3,7 +3,7 @@
  * Created by Juan S (aka Paul Endri)
  */
 
-namespace Core\Config;
+namespace Avalon\Core\Config;
 
 
 class Generator
@@ -20,6 +20,6 @@ class Generator
 	}
 
 	public function launch() {
-		(new \View\Views\ConfigView)->render();
+		(new \Avalon\View\Views\ConfigView)->render();
 	}
 }

@@ -3,7 +3,7 @@
  * Created by Juan S (aka Paul Endri)
  */
 
-namespace Core\Config;
+namespace Avalon\Core\Config;
 
 class Config
 {
@@ -31,8 +31,6 @@ class Config
 		else {
 			$this->loaded = parse_ini_file($this->fileName);
 		}
-
-		$GLOBALS['config'] = $this;
 
 		return $this;
 	}
