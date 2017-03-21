@@ -34,7 +34,7 @@ class Config
 	}
 
 	private function create() {
-		$generator = new \Config\Generator($this->fileName);
+		$generator = new Generator($this->fileName);
 
 		$generator->launch();
 	}

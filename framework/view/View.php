@@ -10,15 +10,16 @@ abstract class View
 	protected $template = '';
 	protected $controller = '';
 	protected $file = '';
+
 	private $loadedTemplate = false;
 
-	public function __construct() {
+	public function __construct($dir = false) {
 		if (empty($this->template) || empty($this->controller) || empty($this->file)) {
 			throw new \Exception('We\'re all mad here!');
 		}
 
 		$template             = '\\Template\\Templates\\' . $this->template;
-		$this->loadedTemplate = new $template($this->file);
+		$this->loadedTemplate = new $template($this->file, $dir);
 	}
 
 	public function loadControllers($controllers = array()) {
